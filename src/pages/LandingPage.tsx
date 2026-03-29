@@ -19,13 +19,13 @@ const FeaturedCourseCard: React.FC<{ course: any; onBuyClick: () => void }> = ({
   return (
     <div
       className="group bg-slate-800/40 backdrop-blur-sm border border-slate-700/40 rounded-2xl overflow-hidden hover:border-slate-600/60 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer"
-      onClick={() => navigate(buildCourseDetailRoute(course.id))}
+      onClick={() => navigate(buildCourseDetailRoute(course._id))}
     >
       {/* Thumbnail */}
       <div className="relative overflow-hidden h-48">
         <img
-          src={course.thumbnail || `https://picsum.photos/seed/${course.id}/400/250`}
-          alt={course.title}
+          src={course.thumbnail || `https://picsum.photos/seed/${course._id}/400/250`}
+          alt={course.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
@@ -45,9 +45,9 @@ const FeaturedCourseCard: React.FC<{ course: any; onBuyClick: () => void }> = ({
       {/* Content */}
       <div className="p-5">
         <h3 className="font-bold text-white text-sm leading-tight mb-1.5 group-hover:text-indigo-300 transition-colors">
-          {truncateText(course.title, 60)}
+          {truncateText(course.name || '', 60)}
         </h3>
-        <p className="text-xs text-slate-400 mb-3">{course.tutor.name}</p>
+        <p className="text-xs text-slate-400 mb-3">{course.instructor?.name}</p>
 
         {/* Stats */}
         <div className="flex items-center gap-3 text-xs text-slate-400 mb-4">
@@ -72,7 +72,7 @@ const FeaturedCourseCard: React.FC<{ course: any; onBuyClick: () => void }> = ({
             {formatCurrency(course.price)}
           </span>
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" onClick={() => navigate(buildCourseDetailRoute(course.id))}>
+            <Button size="sm" variant="outline" onClick={() => navigate(buildCourseDetailRoute(course._id))}>
               View Details
             </Button>
             <Button size="sm" onClick={onBuyClick}>
@@ -302,7 +302,7 @@ export default function LandingPage() {
           {featuredCourses?.data?.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
               {featuredCourses.data.slice(0, 8).map((course: any) => (
-                <FeaturedCourseCard key={course.id} course={course} onBuyClick={handleRegister} />
+                <FeaturedCourseCard key={course._id} course={course} onBuyClick={handleRegister} />
               ))}
             </div>
           ) : (

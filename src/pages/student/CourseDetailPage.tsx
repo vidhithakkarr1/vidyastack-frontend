@@ -95,7 +95,7 @@ export default function CourseDetailPage() {
           <div className="relative rounded-2xl overflow-hidden h-80 bg-slate-800">
             <img
               src={`https://picsum.photos/seed/${course._id || course.id}/800/450`}
-              alt={course.name || course.title}
+              alt={course.name || course.name}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
@@ -107,7 +107,7 @@ export default function CourseDetailPage() {
 
           {/* Title & meta */}
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">{course.name || course.title}</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">{course.name || course.name}</h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-4">
               <span className="flex items-center gap-1.5">
                 <Star className="w-4 h-4 text-amber-400 fill-amber-400" />

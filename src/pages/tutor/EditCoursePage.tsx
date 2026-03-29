@@ -27,8 +27,7 @@ export default function EditCoursePage() {
 
   useEffect(() => {
     if (course) {
-      setForm({
-        title: course.name || course.title,
+      setForm({title: course.name || course.name,
         description: course.description,
         price: course.price,
 
@@ -115,7 +114,7 @@ export default function EditCoursePage() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Course Title *</label>
-          <input type="text" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className={inputClass} />
+          <input type="text" required value={formcourse.name} onChange={(e) => setForm({ ...form, title: e.target.value })} className={inputClass} />
         </div>
 
         {/* Video */}
@@ -146,6 +145,7 @@ export default function EditCoursePage() {
           <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Description *</label>
           <textarea required rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className={`${inputClass} resize-none`} />
         </div>
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Price ($) *</label>
@@ -156,9 +156,8 @@ export default function EditCoursePage() {
             <input type="text" required value={form.duration} onChange={(e) => setForm({ ...form, duration: e.target.value })} className={inputClass} />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
 
+        <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Level *</label>
             <select value={form.level} onChange={(e) => setForm({ ...form, level: e.target.value as any })} className={inputClass}>

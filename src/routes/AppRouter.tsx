@@ -19,6 +19,7 @@ const CourseBrowsePage = lazy(() => import('../pages/student/HomePage'));
 const HomePage = lazy(() => import('../pages/student/HomePage'));
 const CourseDetailPage = lazy(() => import('../pages/student/CourseDetailPage'));
 const CartPage = lazy(() => import('../pages/student/CartPage'));
+const SuccessPage = lazy(() => import('../pages/student/SuccessPage'));
 const OrdersPage = lazy(() => import('../pages/student/OrdersPage'));
 const MyCoursesPage = lazy(() => import('../pages/student/MyCoursesPage'));
 const CheckoutSuccessPage = lazy(() => import('../pages/student/CheckoutSuccessPage'));
@@ -66,6 +67,7 @@ export const AppRouter: React.FC = () => {
           <Route path="/courses/:id" element={<CourseDetailPage />} />
           <Route path="/dashboard" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/success" element={<SuccessPage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/my-courses" element={<MyCoursesPage />} />
           <Route path="/checkout/success" element={<CheckoutSuccessPage />} />

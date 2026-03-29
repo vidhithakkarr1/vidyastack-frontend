@@ -95,12 +95,12 @@ export default function CartPage() {
               >
                 <img
                   src={course.thumbnail || `https://picsum.photos/seed/${courseId}/120/80`}
-                  alt={course.title}
+                  alt={course.name}
                   className="w-24 h-16 rounded-xl object-cover flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-white text-sm truncate">{course.title}</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">{course.tutor?.name || 'Unknown Instructor'}</p>
+                  <h3 className="font-semibold text-white text-sm truncate">{course.name}</h3>
+                  <p className="text-xs text-slate-400 mt-0.5">{course.instructor?.name || 'Unknown Instructor'}</p>
                   <p className="text-sm font-bold text-white mt-2">{formatCurrency(course.price)}</p>
                 </div>
                 <button

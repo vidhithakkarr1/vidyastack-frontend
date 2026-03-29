@@ -128,7 +128,7 @@ export default function TutorDashboard() {
                             className="w-12 h-8 rounded-lg object-cover flex-shrink-0"
                           />
                           <div>
-                            <p className="text-sm font-medium text-white max-w-xs truncate">{course.title}</p>
+                            <p className="text-sm font-medium text-white max-w-xs truncate">{course.name}</p>
                             <p className="text-xs text-slate-400">{course.level}</p>
                           </div>
                         </div>

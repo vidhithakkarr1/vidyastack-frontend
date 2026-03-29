@@ -47,7 +47,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
       <div className="relative overflow-hidden h-48">
         <img
           src={course.thumbnail || `https://picsum.photos/seed/${course._id || course.id}/400/250`}
-          alt={course.name || course.title || 'Course'}
+          alt={course.name || course.name || 'Course'}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
@@ -59,9 +59,9 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
       {/* Content */}
       <div className="p-5">
         <h3 className="font-bold text-white text-sm leading-tight mb-1.5 group-hover:text-indigo-300 transition-colors">
-          {truncateText(course.name || course.title, 60)}
+          {truncateText(course.name || course.name, 60)}
         </h3>
-        <p className="text-xs text-slate-400 mb-3">{course.tutor?.name || 'Unknown Instructor'}</p>
+        <p className="text-xs text-slate-400 mb-3">{course.instructor?.name || 'Unknown Instructor'}</p>
 
         {/* Stats */}
         <div className="flex items-center gap-3 text-xs text-slate-400 mb-4">

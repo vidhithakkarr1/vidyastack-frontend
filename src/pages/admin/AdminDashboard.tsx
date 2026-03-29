@@ -142,9 +142,9 @@ export default function AdminDashboard() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="font-semibold text-white text-sm">{course.title}</h3>
+                      <h3 className="font-semibold text-white text-sm">{course.name}</h3>
                       <p className="text-xs text-slate-400 mt-0.5">
-                        By {course.tutor?.name || 'Unknown'} · {course.category || 'General'} · {course.level || 'Beginner'}
+                        By {course.instructor?.name || 'Unknown'} · {course.level || 'Beginner'}
                       </p>
                       <div className="flex items-center gap-3 mt-1.5 text-xs text-slate-500">
                         <span>{formatCurrency(course.price)}</span>

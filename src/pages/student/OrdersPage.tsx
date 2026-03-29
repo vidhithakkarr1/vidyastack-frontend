@@ -40,7 +40,7 @@ export default function OrdersPage() {
         <div className="space-y-4">
           {orders.map((order) => (
             <div
-              key={order.id}
+              key={order._id}
               className="bg-slate-800/40 border border-slate-700/40 rounded-2xl p-5 space-y-4"
             >
               <div className="flex items-start justify-between">
@@ -61,13 +61,13 @@ export default function OrdersPage() {
 
               <div className="flex flex-wrap gap-3">
                 {order.courses.map((course) => (
-                  <div key={course.id} className="flex items-center gap-2 bg-slate-900/60 rounded-xl px-3 py-2">
+                  <div key={course._id} className="flex items-center gap-2 bg-slate-900/60 rounded-xl px-3 py-2">
                     <img
-                      src={course.thumbnail || `https://picsum.photos/seed/${course.id}/40/30`}
-                      alt={course.title}
+                      src={course.thumbnail || `https://picsum.photos/seed/${course._id}/40/30`}
+                      alt={course.name}
                       className="w-8 h-6 rounded object-cover"
                     />
-                    <span className="text-xs text-slate-300 max-w-[150px] truncate">{course.title}</span>
+                    <span className="text-xs text-slate-300 max-w-[150px] truncate">{course.name}</span>
                   </div>
                 ))}
               </div>

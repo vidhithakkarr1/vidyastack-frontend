@@ -163,7 +163,7 @@ export default function AddCoursePage() {
             type="text"
             required
             placeholder="e.g. Complete React Developer Bootcamp"
-            value={form.title}
+            value={formcourse.name}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
             className={inputClass}
           />

@@ -36,13 +36,13 @@ export default function MyCoursesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {courses.map((course) => (
             <div
-              key={course.id}
+              key={course._id}
               className="bg-slate-800/40 border border-slate-700/40 rounded-2xl overflow-hidden hover:border-slate-600/60 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="relative h-40">
                 <img
-                  src={course.thumbnail || `https://picsum.photos/seed/${course.id}/400/250`}
-                  alt={course.title}
+                  src={course.thumbnail || `https://picsum.photos/seed/${course._id}/400/250`}
+                  alt={course.name}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
@@ -54,8 +54,8 @@ export default function MyCoursesPage() {
                 </div>
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">{course.title}</h3>
-                <p className="text-xs text-slate-400 mb-3">{course.tutor?.name || 'Unknown Instructor'}</p>
+                <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">{course.name}</h3>
+                <p className="text-xs text-slate-400 mb-3">{course.instructor?.name || 'Unknown Instructor'}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400">
                     <Clock className="w-3.5 h-3.5" />
@@ -64,7 +64,7 @@ export default function MyCoursesPage() {
                   <Button
                     size="sm"
                     leftIcon={<Play className="w-3.5 h-3.5" />}
-                    onClick={() => navigate(buildCourseDetailRoute(course.id || course._id || ''))}
+                    onClick={() => navigate(buildCourseDetailRoute(course._id || course._id || ''))}
                   >
                     Continue
                   </Button>
