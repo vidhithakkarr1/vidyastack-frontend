@@ -70,7 +70,7 @@ export const courseApi = {
   },
 
   getMyPurchasedCourses: async (): Promise<Course[]> => {
-    const { data } = await axiosInstance.get<ApiResponse<Course[]>>('/course/list');
+    const { data } = await axiosInstance.get<ApiResponse<Course[]>>('/course/my-courses');
     return data.data;
   },
 

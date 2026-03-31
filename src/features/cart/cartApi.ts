@@ -13,7 +13,7 @@ export const cartApi = {
   },
 
   removeFromCart: async (courseId: string): Promise<Cart> => {
-    const { data } = await axiosInstance.delete<ApiResponse<Cart>>('/cart', { data: { courseId } });
+    const { data } = await axiosInstance.delete<ApiResponse<Cart>>(`/cart/${courseId}`);
     return data.data;
   },
 

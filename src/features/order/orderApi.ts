@@ -3,7 +3,7 @@ import { ApiResponse, Order } from '../../types';
 
 export const orderApi = {
   getMyOrders: async (): Promise<Order[]> => {
-    const { data } = await axiosInstance.get<ApiResponse<Order[]>>('/order/myCourses');
+    const { data } = await axiosInstance.get<ApiResponse<Order[]>>('/order/myorders');
     return data.data;
   },
 

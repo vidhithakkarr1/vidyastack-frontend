@@ -45,7 +45,7 @@ export default function OrdersPage() {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-xs text-slate-500 font-mono">#{order.id.slice(-8).toUpperCase()}</p>
+                  <p className="text-xs text-slate-500 font-mono">#{order._id.slice(-8).toUpperCase()}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <Calendar className="w-3.5 h-3.5 text-slate-400" />
                     <span className="text-sm text-slate-400">{formatDate(order.createdAt)}</span>

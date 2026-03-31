@@ -45,6 +45,7 @@ export default function CartPage() {
       const { sessionId } = await paymentApi.createCheckoutSession(
         cart.items.map((i) => i.courseId)
       );
+      clearItems(); // Clear cart after creating checkout session
       const stripe = await stripePromise;
       if (stripe) {
         await stripe.redirectToCheckout({ sessionId });

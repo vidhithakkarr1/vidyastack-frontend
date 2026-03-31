@@ -20,7 +20,6 @@ import { getInitials } from '../utils/formatters';
 
 const navItems = [
   { path: '/courses', icon: Home, label: 'Explore' },
-  { path: '/dashboard', icon: BookOpen, label: 'Dashboard' },
   { path: '/my-courses', icon: GraduationCap, label: 'My Learning' },
   { path: '/orders', icon: Package, label: 'Orders' },
 ];
@@ -67,7 +66,7 @@ export const StudentLayout: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+            <Link to={user ? '/dashboard' : '/'} className="flex items-center gap-2.5 flex-shrink-0 group">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-all">
                 <BookOpen className="w-4 h-4 text-white" />
               </div>

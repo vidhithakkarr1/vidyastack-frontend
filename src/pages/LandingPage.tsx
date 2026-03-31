@@ -5,10 +5,13 @@ import {
   Award, Globe, CheckCircle, ArrowRight, Play, LogOut, ChevronDown
 } from 'lucide-react';
 import { useCourses } from '../features/course/useCourse';
+import { useMyPurchasedCourses } from '../features/course/useCourse';
 import { useAuthStore } from '../features/auth/authStore';
 import { useLogout } from '../features/auth/useAuth';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { CourseCardSkeleton, Skeleton } from '../components/ui/SkeletonLoader';
+import { EmptyState } from '../components/ui/EmptyState';
 import { formatCurrency, formatStudentCount, buildCourseDetailRoute, truncateText, getInitials } from '../utils/formatters';
 import { COURSE_CATEGORIES } from '../constants';
 import { useState } from 'react';
@@ -116,6 +119,7 @@ const StatCard: React.FC<{ icon: React.ReactNode; value: string; label: string }
 export default function LandingPage() {
   const navigate = useNavigate();
   const { data: featuredCourses } = useCourses({ limit: 8 });
+  const { data: myCourses, isLoading: myCoursesLoading } = useMyPurchasedCourses();
   const { user, hasHydrated, isAuthenticated } = useAuthStore();
   const { logout } = useLogout();
   const [profileOpen, setProfileOpen] = useState(false);
@@ -203,8 +207,74 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/50">
+
+      {isAuthenticated ? (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center gap-3 mb-8">
+            <BookOpen className="w-6 h-6 text-indigo-400" />
+            <h1 className="text-2xl font-bold text-white">My Learning</h1>
+            {myCourses && <span className="text-sm text-slate-400">({myCourses.length} courses)</span>}
+          </div>
+
+          {myCoursesLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[1, 2, 3].map((i) => <CourseCardSkeleton key={i} />)}
+            </div>
+          ) : !myCourses?.length ? (
+            <EmptyState
+              icon={<BookOpen className="w-10 h-10" />}
+              title="No courses yet"
+              description="Purchase a course to start your learning journey."
+              action={
+                <Button onClick={() => navigate('/courses')}>Browse Courses</Button>
+              }
+            />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {myCourses.map((course) => (
+                <div
+                  key={course._id}
+                  className="bg-slate-800/40 border border-slate-700/40 rounded-2xl overflow-hidden hover:border-slate-600/60 hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="relative h-40">
+                    <img
+                      src={course.thumbnail || `https://picsum.photos/seed/${course._id}/400/250`}
+                      alt={course.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <div className="h-1.5 bg-slate-700/60 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 w-1/3 rounded-full" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">{course.name}</h3>
+                    <p className="text-xs text-slate-400 mb-3">{course.instructor?.name || 'Unknown Instructor'}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                        <Clock className="w-3.5 h-3.5" />
+                        {course.duration}
+                      </div>
+                      <Button
+                        size="sm"
+                        leftIcon={<Play className="w-3.5 h-3.5" />}
+                        onClick={() => navigate(buildCourseDetailRoute(course._id || course._id || ''))}
+                      >
+                        Continue
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          {/* Hero Section */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/50">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -right-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px]" />
           <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px]" />
@@ -413,6 +483,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
